@@ -18,8 +18,8 @@ class CreateProductsTable extends Migration
             $table->string('name', 100)->unique();
             $table->float('price', 10, 2);
             $table->text('description');
-            $table->string('category', 200);
-            $table->string('image_url', 200)->nullable();
+            $table->string('category', 100);
+            $table->string('image_url', 400)->nullable();
             $table->timestamps();
         });
     }
