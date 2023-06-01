@@ -10,7 +10,7 @@ class StoreProductRequest extends FormRequest
 {
 
     /**
-     * Lista de validação dos dados do request, de acordo com as regras de negócio.
+     * Lista de validação dos dados do request.
      *
      * @return array
      */
@@ -26,7 +26,7 @@ class StoreProductRequest extends FormRequest
     }
 
     /**
-     * Lista de exceções das regras de negócio, tratadas.
+     * Lista de exceções tratadas.
      * @return array
      */
     public function messages()
