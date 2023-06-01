@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Http\Resources\ProductResource;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use Illuminate\Support\Facades\Log;
 
 class ProductController extends Controller
 {
@@ -50,6 +51,7 @@ class ProductController extends Controller
 
         } catch (\Exception $e) {
 
+            Log::error($e->getMessage());
             return response()->json([
                 'success' => false,
                 'message' => 'Erro ao inserir o produto.',
@@ -84,6 +86,7 @@ class ProductController extends Controller
 
         } catch (\Exception $e) {
 
+            Log::error($e->getMessage());
             return response()->json([
                 'success' => false,
                 'message' => 'Erro ao atualizar o produto.',
@@ -105,6 +108,7 @@ class ProductController extends Controller
 
         } catch (\Exception $e) {
 
+            Log::error($e->getMessage());
             return response()->json([
                 'success' => false,
                 'message' => 'Erro ao excluir o produto.',
