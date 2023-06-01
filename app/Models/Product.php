@@ -20,6 +20,10 @@ class Product extends Model
         'image_url',
     ];
 
+    /**
+     * Retorna produtos caso tenham filtros.
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
     public static function getProducts(array $filters = [])
     {
         return Product::
