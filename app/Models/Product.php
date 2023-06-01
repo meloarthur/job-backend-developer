@@ -24,10 +24,10 @@ class Product extends Model
     {
         return Product::
             when(isset($filters['nameCategory']), function ($w) use ($filters) {
-                $w->whereRaw("LOWER('name') like LOWER('%" . $filters['nameCategory'] . "%') OR LOWER('category') like LOWER('%" . $filters['nameCategory'] . "%')");
+                $w->where('name', 'like', '%'. $filters['nameCategory'] .'%')->orWhere('category', 'like', '%'. $filters['nameCategory'] .'%');
             })
             ->when(isset($filters['category']), function ($w) use ($filters) {
-                $w->whereRaw("LOWER('category') like LOWER('%" . $filters['category'] . "%')");
+                $w->where('category', 'like', '%' . $filters['category'] . '%');
             })
             ->when(isset($filters['with_image']), function ($w) use ($filters) {
                 $filters['with_image'] === 'true' ? $w->whereNotNull('image_url') : $w->whereNull('image_url');

@@ -44,12 +44,9 @@ class ProductController extends Controller
     {
         try {
 
-            $this->product::create($request->validated());
+            $product = $this->product::create($request->validated());
 
-            return response()->json([
-                'success' => true,
-                'message' => 'Produto inserido com sucesso.'
-            ], 200);
+            return ProductResource::make($product);
 
         } catch (\Exception $e) {
 
@@ -63,21 +60,12 @@ class ProductController extends Controller
 
     /**
      * Exibir dados de um produto específico pelo id.
-     * @param  int  $id
+     * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Product $product)
     {
-        $product = Product::find($id);
-        
-        if (!$product) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Produto não encontrado.',
-            ], 404);
-        }
-
-        return response()->json(new ProductResource($product), 200);
+        return ProductResource::make($product);
     }
 
     /**
@@ -92,10 +80,7 @@ class ProductController extends Controller
 
             $product->update($request->validated());
 
-            return response()->json([
-                'success' => true,
-                'message' => 'Produto atualizado com sucesso.'
-            ], 200);
+            return ProductResource::make($product);
 
         } catch (\Exception $e) {
 
@@ -109,28 +94,14 @@ class ProductController extends Controller
 
     /**
      * Excluir um produto específico pelo id.
-     * @param  int  $id
+     * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Product $product)
     {
         try {
 
-            $product = $this->product->find($id);
-
-            if(!$product) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Produto não encontrado.',
-                ], 404);
-            }
-
-            $product->delete();
-        
-            return response()->json([
-                'success' => true,
-                'message' => 'Produto excluido com sucesso.',
-            ], 200);
+            return $product->delete();
 
         } catch (\Exception $e) {
 
