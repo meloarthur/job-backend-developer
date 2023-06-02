@@ -74,6 +74,7 @@ class ImportProductsCommand extends Command
                 try {
 
                     $this->storeProduct($product);
+                    $this->info('Produto ' . $product['id'] . ' importado com sucesso.');
 
                 } catch (\Exception $e) {
 
