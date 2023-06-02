@@ -71,11 +71,19 @@ class ImportProductsCommand extends Command
 
             foreach ($products as $product) {
 
-                $this->storeProduct($product);
+                try {
+
+                    $this->storeProduct($product);
+
+                } catch (\Exception $e) {
+
+                    $this->error('Erro ao importar produto ' . $product['id'] . ' da API.');
+
+                }
 
             }
 
-            $this->info('Produtos importados com sucesso.');
+            $this->info('Importação finalizada.');
 
         } else {
 
